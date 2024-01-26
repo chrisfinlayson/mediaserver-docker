@@ -1,0 +1,66 @@
+services:
+  sonarr:
+    #https://docs.linuxserver.io/images/docker-sonarr/#docker-compose-recommended-click-here-for-more-info
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /home/chris/.config/sonarr:/config
+      - /mnt/tv:/tv #optional
+      - /mnt/downloads:/downloads #optional
+      - /mnt:/mnt
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+  radarr:
+    #https://docs.linuxserver.io/images/docker-radarr/#media-folders
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /home/chris/.config/radarr:/config
+      - /mnt/movies:/movies #optional
+      - /mnt/downloads:/downloads #optional
+      - /mnt:/mnt
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+  sabnzbd:
+    #https://docs.linuxserver.io/images/docker-sabnzbd/#docker-compose-recommended-click-here-for-more-info
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /home/chris/.config/sabnzbd:/config
+      - /mnt/downloads:/downloads #optional
+      - /mnt/incomplete-downloads:/incomplete-downloads #optional
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+  plex:
+    #https://docs.linuxserver.io/images/docker-plex/#docker-compose-recommended-click-here-for-more-info
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - /home/chris/.config/plex:/config
+      - /mnt/tv:/tv
+      - /mnt/movies:/movies
+      - /mnt:/mnt
+    restart: unless-stopped
+

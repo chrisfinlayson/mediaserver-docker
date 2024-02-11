@@ -9,9 +9,9 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home/chris/.config/sonarr:/config
-      - /mnt/tv:/tv #optional
-      - /mnt/downloads:/downloads #optional
-      - /mnt:/mnt
+      - /mnt/nfs/video/tv:/tv #optional
+      - /mnt/nfs/downloads:/downloads #optional
+      - /mnt/nfs:/mnt/nfs
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -25,9 +25,9 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home/chris/.config/radarr:/config
-      - /mnt/movies:/movies #optional
-      - /mnt/downloads:/downloads #optional
-      - /mnt:/mnt
+      - /mnt/nfs/video/movies:/movies #optional
+      - /mnt/nfs/downloads:/downloads #optional
+      - /mnt/nfs:/mnt/nfs
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -41,8 +41,9 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home/chris/.config/sabnzbd:/config
-      - /mnt/downloads:/downloads #optional
-      - /mnt/incomplete-downloads:/incomplete-downloads #optional
+      - /mnt/nfs/downloads:/downloads #optional
+      - /mnt/nfs:/mnt/nfs
+      - /mnt/nfs/incomplete-downloads:/incomplete-downloads #optional
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -59,8 +60,23 @@ services:
       - PLEX_CLAIM= #optional
     volumes:
       - /home/chris/.config/plex:/config
-      - /mnt/tv:/tv
-      - /mnt/movies:/movies
+      - /mnt/nfs/video/tv:/tv
+      - /mnt/nfs/video/movies:/movies
       - /mnt:/mnt
     restart: unless-stopped
-
+  lidarr:
+    #https://docs.linuxserver.io/images/docker-radarr/#media-folders
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /home/chris/.config/lidarr:/config
+      - /mnt/nfs/music:/music #optional
+      - /mnt/nfs/downloads:/downloads #optional
+      - /mnt:/mnt
+    ports:
+      - 8686:8686
+    restart: unless-stopped

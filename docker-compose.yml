@@ -8,7 +8,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - $HOME/.config/sonarr:/config
+      - /pool-1/ds-1/.config/sonarr:/config
       - /pool-1/ds-1/video/tv:/tv #optional
       - /pool-1/ds-1/downloads:/downloads #optional
       - /pool-1/ds-1:/pool-1/ds-1
@@ -24,7 +24,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - $HOME/.config/radarr:/config
+      - /pool-1/ds-1/.config/radarr:/config
       - /pool-1/ds-1/video/movies:/movies #optional
       - /pool-1/ds-1/downloads:/downloads #optional
       - /pool-1/ds-1:/pool-1/ds-1
@@ -40,7 +40,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - $HOME/.config/sabnzbd:/config
+      - /pool-1/ds-1/.config/sabnzbd:/config
       - /pool-1/ds-1/downloads:/downloads #optional
       - /pool-1/ds-1:/pool-1/ds-1
       - /pool-1/ds-1/incomplete-downloads:/incomplete-downloads #optional
@@ -59,7 +59,7 @@ services:
       - VERSION=docker
       - PLEX_CLAIM= #optional
     volumes:
-      - $HOME/.config/plex:/config
+      - /pool-1/ds-1/.config/plex:/config
       - /pool-1/ds-1/video/tv:/tv
       - /pool-1/ds-1/video/movies:/movies
       - /pool-1/ds-1:/pool-1/ds-1
@@ -73,7 +73,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - $HOME/.config/lidarr:/config
+      - /pool-1/ds-1/.config/lidarr:/config
       - /pool-1/ds-1/music:/music #optional
       - /pool-1/ds-1/downloads:/downloads #optional
       - /pool-1/ds-1:/pool-1/ds-1

@@ -8,10 +8,10 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /home/chris/.config/sonarr:/config
+      - $HOME/.config/sonarr:/config
       - /pool-1/ds-1/video/tv:/tv #optional
       - /pool-1/ds-1/downloads:/downloads #optional
-      - /mnt/nfs:/mnt/nfs
+      - /pool-1/ds-1/:/pool-1/ds-1/
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -24,10 +24,10 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /home/chris/.config/radarr:/config
+      - $HOME/.config/radarr:/config
       - /pool-1/ds-1/video/movies:/movies #optional
       - /pool-1/ds-1/downloads:/downloads #optional
-      - /mnt/nfs:/mnt/nfs
+      - /pool-1/ds-1/:/pool-1/ds-1/
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -40,9 +40,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /home/chris/.config/sabnzbd:/config
+      - $HOME/.config/sabnzbd:/config
       - /pool-1/ds-1/downloads:/downloads #optional
-      - /mnt/nfs:/mnt/nfs
+      - /pool-1/ds-1/:/pool-1/ds-1/
       - /pool-1/ds-1/incomplete-downloads:/incomplete-downloads #optional
     ports:
       - 8080:8080
@@ -59,7 +59,7 @@ services:
       - VERSION=docker
       - PLEX_CLAIM= #optional
     volumes:
-      - /home/chris/.config/plex:/config
+      - $HOME/.config/plex:/config
       - /pool-1/ds-1/video/tv:/tv
       - /pool-1/ds-1/video/movies:/movies
       - /mnt:/mnt
@@ -73,7 +73,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /home/chris/.config/lidarr:/config
+      - $HOME/.config/lidarr:/config
       - /pool-1/ds-1/music:/music #optional
       - /pool-1/ds-1/downloads:/downloads #optional
       - /mnt:/mnt

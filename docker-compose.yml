@@ -9,8 +9,8 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home/chris/.config/sonarr:/config
-      - /mnt/nfs/video/tv:/tv #optional
-      - /mnt/nfs/downloads:/downloads #optional
+      - /pool-1/ds-1/video/tv:/tv #optional
+      - /pool-1/ds-1/downloads:/downloads #optional
       - /mnt/nfs:/mnt/nfs
     ports:
       - 8989:8989
@@ -25,8 +25,8 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home/chris/.config/radarr:/config
-      - /mnt/nfs/video/movies:/movies #optional
-      - /mnt/nfs/downloads:/downloads #optional
+      - /pool-1/ds-1/video/movies:/movies #optional
+      - /pool-1/ds-1/downloads:/downloads #optional
       - /mnt/nfs:/mnt/nfs
     ports:
       - 7878:7878
@@ -41,9 +41,9 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home/chris/.config/sabnzbd:/config
-      - /mnt/nfs/downloads:/downloads #optional
+      - /pool-1/ds-1/downloads:/downloads #optional
       - /mnt/nfs:/mnt/nfs
-      - /mnt/nfs/incomplete-downloads:/incomplete-downloads #optional
+      - /pool-1/ds-1/incomplete-downloads:/incomplete-downloads #optional
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -60,8 +60,8 @@ services:
       - PLEX_CLAIM= #optional
     volumes:
       - /home/chris/.config/plex:/config
-      - /mnt/nfs/video/tv:/tv
-      - /mnt/nfs/video/movies:/movies
+      - /pool-1/ds-1/video/tv:/tv
+      - /pool-1/ds-1/video/movies:/movies
       - /mnt:/mnt
     restart: unless-stopped
   lidarr:
@@ -74,8 +74,8 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /home/chris/.config/lidarr:/config
-      - /mnt/nfs/music:/music #optional
-      - /mnt/nfs/downloads:/downloads #optional
+      - /pool-1/ds-1/music:/music #optional
+      - /pool-1/ds-1/downloads:/downloads #optional
       - /mnt:/mnt
     ports:
       - 8686:8686

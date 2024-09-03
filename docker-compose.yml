@@ -99,3 +99,18 @@ services:
     ports:
       - 8686:8686
     restart: unless-stopped
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /pool-1/ds-1/.config/readarr:/config
+      - /pool-1/ds-1/books:/books #optional
+      - /pool-1/ds-1/downloads:/downloads
+      - /pool-1/ds-1:/pool-1/ds-1
+    ports:
+      - 8787:8787
+    restart: unless-stopped 

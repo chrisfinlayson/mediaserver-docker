@@ -119,3 +119,16 @@ services:
     ports:
       - 8787:8787
     restart: unless-stopped
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    hostname: mediaserver.tailbb6730.ts.net
+    ports:
+      - 13378:80
+    volumes:
+      - /pool-1/ds-1/books:/audiobooks
+      - /pool-1/ds-1/podcasts:/podcasts
+      - /pool-1/ds-1/.config/audiobookshelf:/config
+      - /pool-1/ds-1/.config/audiobookshelf/metadata:/metadata
+    environment:
+      - TZ=Etc/UTC
